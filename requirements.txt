@@ -3,3 +3,5 @@ fastapi
 uvicorn
 obspy
 scipy
+pymysql
+python-dotenv
