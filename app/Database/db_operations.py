@@ -11,7 +11,7 @@ class DBOperations:
         if self.conn is None or not self.conn.open:
             self.conn = DBConnection().connection
 
-    def get_sensor_configuration(self, sensor_id , document_id):
+    def get_sensor_configuration(self, sensor_id , document_id , report_id):
         """
         Obtiene la configuración del sensor desde la base de datos.
         Si no encuentra configuración, retorna valores por defecto.
@@ -50,11 +50,12 @@ class DBOperations:
                     INNER JOIN acelerometro_configuracion_evento ace ON ace.reporte_id = ra.id_reporte
                     WHERE ac.sensor_id = %s
                     AND ra.document_id = %s
+                    AND ra.id_reporte = %s
                 """
-                cursor.execute(sql, (sensor_id, document_id))
+                cursor.execute(sql, (sensor_id, document_id, report_id))
                 config = cursor.fetchone()
 
-                print(f"config: {config}")
+                print(f"config: {config } sensor_id: {sensor_id}, document_id: {document_id}, report_id: {report_id}")
 
                 return config if config else default_config
 

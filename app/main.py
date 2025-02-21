@@ -147,6 +147,8 @@ async def procesar_archivo_evt(
     file: UploadFile = File(...),
     id_sensor: int = Form(None),
     document_id: int = Form(None),
+    report_id: int = Form(None),
+
 ):
     """
     Recibe un archivo EVT, obtiene la configuración del sensor y procesa los datos.
@@ -155,7 +157,7 @@ async def procesar_archivo_evt(
         contenido = await file.read()
 
         # 🔹 Obtener configuración desde la BD o usar valores por defecto
-        config      = db.get_sensor_configuration(id_sensor , document_id)
+        config      = db.get_sensor_configuration(id_sensor , document_id, report_id)
         resultado   = procesar_evt(contenido, config)
 
         return json.loads(resultado)
