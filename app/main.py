@@ -6,7 +6,7 @@ import uvicorn
 import io
 from scipy.integrate import cumulative_trapezoid
 from scipy.signal import butter, filtfilt, find_peaks
-from Database.db_operations import DBOperations
+from app.Database.db_operations import DBOperations
 
 app = FastAPI()
 db = DBOperations()
