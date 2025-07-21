@@ -139,7 +139,9 @@ def procesar_evt(evt_data: bytes, config):
 
     except Exception as e:
         raise HTTPException(status_code=400, detail=f"Error al procesar el archivo: {str(e)}")
-
+@app.get("/ping")
+def ping():
+    return {"message": "pong"}
 
 # 🔹 Endpoint para procesar archivos EVT
 @app.post("/procesar_evt/")
