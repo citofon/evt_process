@@ -1,4 +1,4 @@
-from Config.db_connection import DBConnection
+from app.Config.db_connection import DBConnection
 import pymysql
 
 class DBOperations:
